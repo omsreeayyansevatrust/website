@@ -19,6 +19,13 @@ const leaders = [
     phone: "+91 90434 29406",
     email: "treasurer@omsreeayyansevatrust.org",
   },
+
+  {
+    name: "Mr. Manikandan",
+    role: "Joint Secretary",
+    phone: "+91 90434 29406",
+    email: "treasurer@omsreeayyansevatrust.org",
+  },
 ];
 
 export default function Leadership() {
