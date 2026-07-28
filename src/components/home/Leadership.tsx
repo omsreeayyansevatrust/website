@@ -5,7 +5,7 @@ const leaders = [
     name: "Mr. R. Suresh Babu",
     role: "Founder & Head Trustee",
     phone: "+91 9444 813005",
-    email: "omsreeayyansevatrust@gmail.com",
+    email: "founder@omsreeayyansevatrust.org",
   },
   {
     name: "Mr. B. Janagan",
