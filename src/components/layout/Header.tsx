@@ -15,7 +15,7 @@ const menus = [
   { name: "Projects", href: "/projects" },
   { name: "Events", href: "/events" },
   { name: "Gallery", href: "/gallery" },
-  { name: "Volunteer", href: "/volunteer" },
+  //{ name: "Volunteer", href: "/volunteer" },
   { name: "Contact", href: "/contact" },
 ];
 
