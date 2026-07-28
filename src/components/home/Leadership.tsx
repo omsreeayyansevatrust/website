@@ -2,19 +2,19 @@ import { Mail, Phone } from "lucide-react";
 
 const leaders = [
   {
-    name: "Mr. R Suresh Babu",
+    name: "Mr. R. Suresh Babu",
     role: "Founder & Head Trustee",
     phone: "+91 9444 813005",
     email: "omsreeayyansevatrust@gmail.com",
   },
   {
-    name: "Mr. B Janagan",
+    name: "Mr. B. Janagan",
     role: "Secretary",
     phone: "+91 84287 87926",
     email: "secretary@omsreeayyansevatrust.org",
   },
   {
-    name: "Mr. N Prabhu",
+    name: "Mr. N.Prabhu",
     role: "Treasurer",
     phone: "+91 90434 29406",
     email: "treasurer@omsreeayyansevatrust.org",
