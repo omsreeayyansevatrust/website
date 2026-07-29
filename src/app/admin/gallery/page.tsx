@@ -95,9 +95,7 @@ export default function GalleryPage() {
 
         <SearchBar
           value={search}
-          onChange={(e) =>
-            setSearch(e.target.value)
-          }
+          onChange={setSearch}
           placeholder="Search albums..."
         />
 
