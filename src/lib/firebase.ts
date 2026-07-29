@@ -30,6 +30,3 @@ if (typeof window !== "undefined") {
 }
 
 export default app;
-
-console.log("Firebase Config:", firebaseConfig);
-console.log("Storage Bucket:", firebaseConfig.storageBucket);
