@@ -4,20 +4,19 @@ interface Props {
   title: string;
   value: number | string;
   icon: LucideIcon;
-  color: string;
-  bg: string;
+  color?: string;
+  bg?: string;
 }
 
 export default function StatCard({
   title,
   value,
   icon: Icon,
-  color,
-  bg,
+  color = "text-blue-600",
+  bg = "bg-blue-100",
 }: Props) {
   return (
     <div className="bg-white rounded-xl shadow-md border border-gray-100 p-6 flex justify-between items-center">
-
       <div>
         <p className="text-gray-500 text-sm">
           {title}
@@ -28,12 +27,9 @@ export default function StatCard({
         </h2>
       </div>
 
-      <div
-        className={`${bg} ${color} p-4 rounded-full`}
-      >
+      <div className={`${bg} ${color} p-4 rounded-full`}>
         <Icon size={30} />
       </div>
-
     </div>
   );
 }
