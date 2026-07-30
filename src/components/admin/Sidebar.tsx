@@ -5,13 +5,14 @@ import { usePathname, useRouter } from "next/navigation";
 import { signOut } from "firebase/auth";
 import { auth } from "@/lib/firebase";
 
+
 import {
   LayoutDashboard,
   FolderKanban,
   CalendarDays,
   ImageIcon,
   Users,
-  Mail,
+  ShieldCheck,
   HeartHandshake,
   Settings,
   LogOut,
@@ -44,9 +45,9 @@ const menus = [
     href: "/admin/volunteers",
   },
   {
-    name: "Messages",
-    icon: Mail,
-    href: "/admin/messages",
+    name: "Trustees",
+    icon: ShieldCheck,
+    href: "/admin/trustees",
   },
   {
     name: "Donations",
