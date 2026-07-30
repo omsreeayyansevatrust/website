@@ -22,11 +22,20 @@ const defaultSettings: WebsiteSettings = {
   },
 
   about: {
-    title: "About Us",
-    subtitle: "",
-    description: "",
-    image: "",
-  },
+  title: "About Us",
+  subtitle: "Serving Humanity",
+  description: "",
+  image: "",
+
+  valuesTitle: "Our Values",
+  valuesDescription: "",
+
+  visionTitle: "Our Vision",
+  visionDescription: "",
+
+  missionTitle: "Our Mission",
+  missionDescription: "",
+},
 
   contact: {
     phone: "",
