@@ -1,22 +1,50 @@
-import Image from "next/image";
+"use client";
 
-const images = [
-  "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800",
-  "https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=800",
-  "https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?w=800",
-  "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=800",
-  "https://images.unsplash.com/photo-1469571486292-b53601020f16?w=800",
-  "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800",
-];
+import { useEffect, useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+
+import { getAllGalleries } from "@/services/galleryService";
+import { Gallery as GalleryType } from "@/types/gallery";
 
 export default function Gallery() {
+  const [gallery, setGallery] = useState<GalleryType[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    loadGallery();
+  }, []);
+
+  async function loadGallery() {
+    try {
+      const data = await getAllGalleries();
+
+      const homepageGallery = data
+        .filter(
+          (item) =>
+            item.featured &&
+            item.status === "Published"
+        )
+        .sort(
+          (a, b) =>
+            new Date(b.eventDate).getTime() -
+            new Date(a.eventDate).getTime()
+        )
+        .slice(0, 6);
+
+      setGallery(homepageGallery);
+    } catch (error) {
+      console.error("Failed to load gallery:", error);
+    } finally {
+      setLoading(false);
+    }
+  }
+
   return (
     <section className="py-24 bg-gray-100">
-
       <div className="container mx-auto px-6">
 
         <div className="text-center mb-16">
-
           <span className="uppercase tracking-widest text-blue-700 font-semibold">
             Gallery
           </span>
@@ -30,42 +58,66 @@ export default function Gallery() {
             medical camps, education programs, environmental
             initiatives and volunteer efforts.
           </p>
-
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {loading ? (
+          <div className="text-center py-20 text-gray-500">
+            Loading gallery...
+          </div>
+        ) : gallery.length === 0 ? (
+          <div className="text-center py-20 text-gray-500">
+            No gallery images available.
+          </div>
+        ) : (
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
 
-          {images.map((image, index) => (
+            {gallery.map((item) => (
+              <div
+                key={item.id}
+                className="overflow-hidden rounded-2xl shadow-lg group bg-white"
+              >
+                <div className="relative h-72">
+                  <Image
+                    src={item.thumbnail}
+                    alt={item.title}
+                    fill
+                    className="object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                </div>
 
-            <div
-              key={index}
-              className="overflow-hidden rounded-2xl shadow-lg group"
-            >
+                <div className="p-5">
+                  <h3 className="text-xl font-bold mb-2">
+                    {item.title}
+                  </h3>
 
-              <Image
-                src={image}
-                alt={`Gallery ${index + 1}`}
-                width={600}
-                height={450}
-                className="w-full h-72 object-cover group-hover:scale-110 transition duration-500"
-              />
+                  <p className="text-gray-600 text-sm line-clamp-3">
+                    {item.description}
+                  </p>
 
-            </div>
+                  <div className="mt-4 text-sm text-blue-700 font-medium">
+                    {new Date(item.eventDate).toLocaleDateString("en-IN", {
+                      day: "2-digit",
+                      month: "short",
+                      year: "numeric",
+                    })}
+                  </div>
+                </div>
+              </div>
+            ))}
 
-          ))}
-
-        </div>
+          </div>
+        )}
 
         <div className="text-center mt-16">
-
-          <button className="bg-blue-900 text-white px-8 py-4 rounded-full hover:bg-blue-700 transition">
+          <Link
+            href="/gallery"
+            className="inline-block bg-blue-900 text-white px-8 py-4 rounded-full hover:bg-blue-700 transition"
+          >
             View Complete Gallery
-          </button>
-
+          </Link>
         </div>
 
       </div>
-
     </section>
   );
 }

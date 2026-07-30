@@ -12,6 +12,15 @@ export interface AboutSettings {
   subtitle: string;
   description: string;
   image: string;
+
+  valuesTitle: string;
+  valuesDescription: string;
+
+  visionTitle: string;
+  visionDescription: string;
+
+  missionTitle: string;
+  missionDescription: string;
 }
 
 export interface ContactSettings {
